@@ -32,7 +32,7 @@ else:
 century_dict = {0:'Tuesday', 1:'Sunday', 2:'Friday', 3:'Wednesday'}
 century_day = century_dict[int(century)%4]
 
-
-
 # tell the user what century, and therefor what position we start from
 print(f"The date chosen falls in the year {year} ")
+
+# these are changes made to the file to see how git handles them
