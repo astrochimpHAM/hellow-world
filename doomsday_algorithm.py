@@ -6,6 +6,9 @@ My attempt to programmatically re-create the doomsday method for finding the
 day of the week for any date.
 
 """
+# imports
+import math
+
 # get the target date from the user
 date = input('Enter a date to learn the day of the week it falls on: '
             '\n(please format as DD. MM. YYYY.)\n')
@@ -32,7 +35,15 @@ else:
 century_dict = {0:'Tuesday', 1:'Sunday', 2:'Friday', 3:'Wednesday'}
 century_day = century_dict[int(century)%4]
 
+# find the decade "section" we're in (every 28 years the calendar repeats)
+decade_reduction = int(decade)%28 #
+leap_year = math.floor(int(decade_reduction)/4)
+decade_factor = decade_reduction + leap_year # sum the decade factor
+
+print(decade_factor)
+
+
 # tell the user what century, and therefor what position we start from
-print(f"The date chosen falls in the year {year} ")
+#print(f"The date chosen falls in the {century}")
 
 # these are changes made to the file to see how git handles them
