@@ -17,6 +17,18 @@ day = input("Day: ")
 month = input("Month: ")
 year = input("Year: ")
 
+# clean up day and month inputs if they are single digits
+def cleanup_input(x):
+    if len(x) < 2:
+        x = "0" + x
+        return x
+    else:
+        x = x
+        return x
+
+cleanup_input(day)
+cleanup_input(month)
+
 # split the year into century and decade components
 year_list = list(year)
 
@@ -42,6 +54,7 @@ decade_factor = decade_section + leap_year_factor # sum the decade factor
 # determine if year is a leap year
 year = int(year)
 
+"""
 if year % 4 == 0:
     if year % 100 == 0:
         if year % 400 == 0:
@@ -52,9 +65,13 @@ if year % 4 == 0:
         leap_year = "yes"
 else:
     leap_year = "no"
+"""
 
+leap_year = (year % 4 == 0 and year % 100 != 0) or \
+    (year % 4 == 0 and year % 100 == 0 and year % 400 == 0)
+    
 # leap year corrections for the following month_dict
-if leap_year == "no":
+if leap_year:
     x = 3 # these variables correspond to jan + feb doomsday if no leap year
     y = 28
 else:
@@ -91,11 +108,12 @@ day_dict = {0:'Sunday',
 
 # find the difference between the user selected day and doomsday
 day_diff = abs(int(month_dict[month]) - int(day))
-# day_diff = day_diff % 7 # ignore day differences that complete a week
+day_diff = day_diff % 7 # ignore day differences that complete a week
 
 # find the day of the week
 final_day = (doomsday + day_diff) % 7
 
+print(leap_year)
 print(century)
 print(century_factor)
 print(decade_factor)
